@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" 
+          android:versionCode="1" 
+          android:versionName="1.0" 
+          package="com.companyname.DemoNfc" 
+          android:installLocation="preferExternal">
+  
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
+  
+	<uses-permission android:name="android.permission.NFC" />
+  <uses-feature android:name="android.hardware.nfc" android:required="true" />
+  
+	<application android:label="DemoNfc.Android">
+<!--    <intent-filter>
+      <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+      <action android:name="android.nfc.action.TAG_DISCOVERED"/>
+      <category android:name="android.intent.category.DEFAULT"/>
+    </intent-filter>-->
+  </application>
+  
+</manifest>
