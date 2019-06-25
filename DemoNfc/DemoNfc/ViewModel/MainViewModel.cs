@@ -11,6 +11,7 @@ namespace DemoNfc.ViewModel
     {
 
         public string TagId { get; set; }
+        public string ReceivedAt { get; set; }
 
         bool _isTapped;
 
@@ -27,7 +28,8 @@ namespace DemoNfc.ViewModel
                         return;
 
                     _isTapped = true;
-                    OnTestAnimation?.Invoke(); //Now run the Action which, if it is not null, your ContentPage should have set to do the scrolling
+
+                    MessagingCenter.Send<App, List<string>>((App)Xamarin.Forms.Application.Current, "Tag", new List<string> { "Test" });
 
                     _isTapped = false;
 
@@ -46,6 +48,8 @@ namespace DemoNfc.ViewModel
                 {
                     OnTestAnimation?.Invoke(); //Now run the Action which, if it is not null, your ContentPage should have set to do the scrolling
                     TagId = arg[0]; // Pos 0 = TagID
+                    DateTime dateTime = DateTime.Now;
+                    ReceivedAt = dateTime.ToLongDateString() + "\n" +  dateTime.ToLongTimeString();
                 });
 
             });

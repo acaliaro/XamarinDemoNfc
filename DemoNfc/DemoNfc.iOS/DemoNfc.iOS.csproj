@@ -51,7 +51,12 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignEntitlements>
+    </CodesignEntitlements>
+    <CodesignProvision>
+    </CodesignProvision>
+    <CodesignExtraArgs />
+    <CodesignResourceRules />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -73,9 +78,14 @@
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
     <BuildIpa>True</BuildIpa>
-    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>
+    </CodesignProvision>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>
+    </CodesignEntitlements>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignExtraArgs />
+    <CodesignResourceRules />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
@@ -89,6 +99,12 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DemoNfc.iOS.Application</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -97,6 +113,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\baseline_nfc_black_48.imageset\baseline_nfc_black_481.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\baseline_nfc_black_48.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>

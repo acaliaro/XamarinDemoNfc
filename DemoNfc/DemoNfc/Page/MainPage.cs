@@ -26,11 +26,14 @@ namespace DemoNfc.Page
             Label labelTagId = new Label() { FontSize = 20, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Start };
             labelTagId.SetBinding(Label.TextProperty, new Binding("TagId", stringFormat: AppResources.TagIdFmt));
 
+            Label labelReceivedAt = new Label() { FontSize = 20, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Center };
+            labelReceivedAt.SetBinding(Label.TextProperty, "ReceivedAt");
+
             Label labelAvviso = new Label() { FontSize = 30, Text = AppResources.AvvicinaIlTagNfc, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.End };
 
-            StackLayout stackLayout = new StackLayout() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Children = { labelTagId, image, labelAvviso } };
+            StackLayout stackLayout = new StackLayout() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Children = { labelTagId, labelReceivedAt, image, labelAvviso } };
 
-            Frame frame = new Frame() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, BorderColor = Color.Red, CornerRadius = 10, Margin = new Thickness(10), Content = stackLayout };            
+            Frame frame = new Frame() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, BorderColor = Color.Red, CornerRadius = 10, Margin = Device.RuntimePlatform == Device.iOS ? new Thickness(10,20,10,10) : new Thickness(10), Content = stackLayout };            
 
             Content = frame;
 

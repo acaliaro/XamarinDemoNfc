@@ -1,0 +1,25 @@
+{
+  "images": [
+    {
+      "scale": "1x",
+      "idiom": "universal"
+    },
+    {
+      "scale": "2x",
+      "idiom": "universal"
+    },
+    {
+      "scale": "3x",
+      "idiom": "universal"
+    },
+    {
+      "idiom": "universal",
+      "filename": "baseline_nfc_black_481.pdf"
+    }
+  ],
+  "properties": {},
+  "info": {
+    "version": 1,
+    "author": ""
+  }
+}
