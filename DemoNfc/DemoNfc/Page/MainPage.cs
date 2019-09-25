@@ -17,14 +17,14 @@ namespace DemoNfc.Page
             
             Image image = new Image() { Source = "baseline_nfc_black_48", VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand };
 
-#if DEBUG
             TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.SetBinding(TapGestureRecognizer.CommandProperty, "ImageTapCommand");
-            image.GestureRecognizers.Add(tapGestureRecognizer);
-#endif
 
-            Label labelTagId = new Label() { FontSize = 20, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Start };
-            labelTagId.SetBinding(Label.TextProperty, new Binding("TagId", stringFormat: AppResources.TagIdFmt));
+            if(Device.RuntimePlatform == Device.iOS)
+                image.GestureRecognizers.Add(tapGestureRecognizer);
+
+            Label labelTagId = new Label() { FontSize = 20, TextColor= Color.Green, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Start };
+            labelTagId.SetBinding(Label.TextProperty, new Binding("TagId"));
 
             Label labelReceivedAt = new Label() { FontSize = 20, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Center };
             labelReceivedAt.SetBinding(Label.TextProperty, "ReceivedAt");

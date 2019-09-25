@@ -21,7 +21,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>DemoNfc</string>
 	<key>CFBundleIdentifier</key>
-	<string>it.companyname.DemoNfc</string>
+	<string>it.soluzione1.DemoNfc</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -30,7 +30,9 @@
 	<string>DemoNfc</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-  <key>NFCReaderUsageDescription</key>
-  <string>NFC tag to read NDEF messages into the application</string>
+	<key>NFCReaderUsageDescription</key>
+	<string>NFC tag to read NDEF messages into the application</string>
+	<key>UIMainStoryboardFile</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>

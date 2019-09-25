@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using CoreNFC;
 using CoreFoundation;
+using Xamarin.Forms;
 
 namespace DemoNfc.iOS
 {
@@ -16,33 +17,58 @@ namespace DemoNfc.iOS
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate, INFCNdefReaderSessionDelegate 
     {
 
+        private static AppDelegate appDelegate;
+
         List<NFCNdefMessage> DetectedMessages = new List<NFCNdefMessage> { };
+        List<string> tags = new List<string>();
 
         public void DidDetect(NFCNdefReaderSession session, NFCNdefMessage[] messages)
         {
+            tags.Clear();
+
             foreach(NFCNdefMessage msg in messages)
             {
                 DetectedMessages.Add(msg);
+                foreach(var payload in msg.Records)
+                {
+                    if(payload.TypeNameFormat == NFCTypeNameFormat.AbsoluteUri)
+                    {
+
+                    }
+                }
             }
             DispatchQueue.MainQueue.DispatchAsync(() =>
             {
+
+                MessagingCenter.Send<App, List<string>>((App)Xamarin.Forms.Application.Current, "Tag", tags);
+
                 //this.TableView.ReloadData();
             });
+        }
+
+        public static AppDelegate GetInstance()
+        {
+            return appDelegate;
         }
 
         public void DidInvalidate(NFCNdefReaderSession session, NSError error)
         {
             var readerError = (NFCReaderError)(long)error.Code;
 
+            System.Diagnostics.Debug.WriteLine("DidInvalidate: errorcode " + error.Code.ToString() + " " + error.LocalizedDescription + " " + error.LocalizedFailureReason);
+
             if (readerError != NFCReaderError.ReaderSessionInvalidationErrorFirstNDEFTagRead &&
                 readerError != NFCReaderError.ReaderSessionInvalidationErrorUserCanceled)
             {
 
-                var alertController = UIAlertController.Create("Session Invalidated", error.LocalizedDescription, UIAlertControllerStyle.Alert);
-                alertController.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
-                DispatchQueue.MainQueue.DispatchAsync(() =>
+                InvokeOnMainThread(() =>
                 {
-                    //this.PresentViewController(alertController, true, null);
+                    var alertController = UIAlertController.Create("Session Invalidated", error.LocalizedDescription, UIAlertControllerStyle.Alert);
+                    alertController.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+                    DispatchQueue.MainQueue.DispatchAsync(() =>
+                    {
+                        //this.PresentViewController(alertController, true, null);
+                    });
                 });
             }
 
@@ -60,7 +86,16 @@ namespace DemoNfc.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
+            appDelegate = this;
+
             return base.FinishedLaunching(app, options);
+        }
+
+        internal void StartSession()
+        {
+            var Session = new NFCNdefReaderSession(this, null, true);
+            //Session.AlertMessage = "You can hold you NFC-tag to the back-top of your iPhone";
+            Session?.BeginSession();
         }
     }
 }

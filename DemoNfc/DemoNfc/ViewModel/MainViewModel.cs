@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DemoNfc.Interface;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -29,8 +30,10 @@ namespace DemoNfc.ViewModel
 
                     _isTapped = true;
 
-                    MessagingCenter.Send<App, List<string>>((App)Xamarin.Forms.Application.Current, "Tag", new List<string> { "Test" });
-
+                    if (Device.RuntimePlatform != Device.iOS)
+                        MessagingCenter.Send<App, List<string>>((App)Xamarin.Forms.Application.Current, "Tag", new List<string> { "Test" });
+                    else
+                        DependencyService.Get<INfc>().StartSession();
                     _isTapped = false;
 
                 }
