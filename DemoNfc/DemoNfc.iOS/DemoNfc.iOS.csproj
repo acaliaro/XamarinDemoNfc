@@ -29,7 +29,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer: Andrea Todeschini (94U5Q59BTR)</CodesignKey>
-    <CodesignProvision>VS: it.soluzione1.DemoNfc Development</CodesignProvision>
+    <CodesignProvision>VS: it.soluzione1.DemoXamarinNfc Development</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <CodesignEntitlements />
@@ -43,6 +43,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
+    <CodesignProvision>VS: it.soluzione1.DemoXamarinNfc Development</CodesignProvision>
+    <CodesignKey>iPhone Developer: Andrea Todeschini (94U5Q59BTR)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,9 +58,8 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Developer: Andrea Todeschini (94U5Q59BTR)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignEntitlements>
-    </CodesignEntitlements>
-    <CodesignProvision>VS: it.soluzione1.DemoNfc Development</CodesignProvision>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>VS: it.soluzione1.DemoXamarinNfc Development</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
   </PropertyGroup>
@@ -70,8 +71,9 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Andrea Todeschini (94U5Q59BTR)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>VS: it.soluzione1.DemoXamarinNfc Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -82,9 +84,8 @@
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
     <BuildIpa>True</BuildIpa>
-    <CodesignProvision>
-    </CodesignProvision>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignProvision>VS: it.soluzione1.DemoXamarinNfc Development</CodesignProvision>
+    <CodesignKey>iPhone Developer: Andrea Todeschini (94U5Q59BTR)</CodesignKey>
     <CodesignEntitlements>
     </CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
@@ -99,8 +100,8 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignProvision>Automatic:AppStore</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>VS: it.soluzione1.DemoXamarinNfc Development</CodesignProvision>
+    <CodesignKey>iPhone Developer: Andrea Todeschini (94U5Q59BTR)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
@@ -180,7 +181,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\DemoNfc\DemoNfc.csproj">
-      <Project>{44140AAE-7801-496C-93BA-5FE3D6EC53B4}</Project>
+      <Project>{44E45413-62D3-4749-9585-9BE268F93DF1}</Project>
       <Name>DemoNfc</Name>
     </ProjectReference>
   </ItemGroup>

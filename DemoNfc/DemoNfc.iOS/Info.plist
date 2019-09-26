@@ -5,7 +5,6 @@
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
-		<integer>2</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -21,7 +20,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>DemoNfc</string>
 	<key>CFBundleIdentifier</key>
-	<string>it.soluzione1.DemoNfc</string>
+	<string>it.soluzione1.DemoXamarinNfc</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -34,5 +33,7 @@
 	<string>NFC tag to read NDEF messages into the application</string>
 	<key>UIMainStoryboardFile</key>
 	<string>LaunchScreen</string>
+	<key>MinimumOSVersion</key>
+	<string>11.4</string>
 </dict>
 </plist>

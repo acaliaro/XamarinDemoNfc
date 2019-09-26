@@ -16,8 +16,7 @@ namespace DemoNfc.iOS
     {
         public void StartSession()
         {
-
-            AppDelegate.GetInstance().StartSession();
+            AppDelegate.GetInstance().Scan();
         }
     }
 }
