@@ -1,4 +1,5 @@
 ﻿using DemoNfc.Interface;
+using DemoNfc.Page;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,6 +54,13 @@ namespace DemoNfc.ViewModel
                     TagId = arg[0]; // Pos 0 = TagID
                     DateTime dateTime = DateTime.Now;
                     ReceivedAt = dateTime.ToLongDateString() + "\n" +  dateTime.ToLongTimeString();
+
+                    // If there is a popup, I close it
+                    if (Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Count > 0)
+                        Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
+
+                    Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(new ResultPopupPage(arg));
+
                 });
 
             });
