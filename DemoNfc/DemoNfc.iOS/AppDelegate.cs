@@ -8,6 +8,7 @@ using CoreNFC;
 using CoreFoundation;
 using Xamarin.Forms;
 using System.IO;
+using Matcha.BackgroundService.iOS;
 
 namespace DemoNfc.iOS
 {
@@ -44,7 +45,7 @@ namespace DemoNfc.iOS
             LoadApplication(new App());
 
             appDelegate = this;
-
+            BackgroundAggregator.Init(this);
             return base.FinishedLaunching(uiApplication, launchOptions);
         }
 
@@ -246,25 +247,25 @@ namespace DemoNfc.iOS
 
             var code = payload[0];
             NSString originalText = (Foundation.NSString)NSData.FromStream(new MemoryStream(payload, 1, (int)length - 1)).ToString(NSStringEncoding.UTF8);
-
-            switch (code)
-            {
-                case 0x00:
-                    text = originalText;
-                    break;
-                case 0x01:
-                    text = (Foundation.NSString)("http://www." + originalText);
-                    break;
-                case 0x02:
-                    text = (Foundation.NSString)("https://www." + originalText);
-                    break;
-                case 0x03:
-                    text = (Foundation.NSString)("http://" + originalText);
-                    break;
-                default:
-                    text = originalText;
-                    break;
-            }
+            text = (Foundation.NSString)DemoNfc.Utility.Utility.UriMap(code);
+            //switch (code)
+            //{
+            //    case 0x00:
+            //        text = originalText;
+            //        break;
+            //    case 0x01:
+            //        text = (Foundation.NSString)("http://www." + originalText);
+            //        break;
+            //    case 0x02:
+            //        text = (Foundation.NSString)("https://www." + originalText);
+            //        break;
+            //    case 0x03:
+            //        text = (Foundation.NSString)("http://" + originalText);
+            //        break;
+            //    default:
+            //        text = originalText;
+            //        break;
+            //}
         }
 
         public void DidInvalidate(NFCNdefReaderSession session, NSError error)

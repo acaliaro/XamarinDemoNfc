@@ -1,53 +1,61 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<pages:PopupPage 
-    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    x:Class="DemoNfc.Page.ResultPopupPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="DemoNfc.Page.ResultPopupPage"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     BackgroundColor="LightGray">
-<!--You can set an animation in the xaml file or in the csharp code behind-->
+    <!--  You can set an animation in the xaml file or in the csharp code behind  -->
     <pages:PopupPage.Animation>
-        <animations:ScaleAnimation 
-            PositionIn="Center"
-            PositionOut="Center"
-            ScaleIn="1.2"
-            ScaleOut="0.8"
+        <animations:ScaleAnimation
             DurationIn="400"
             DurationOut="300"
             EasingIn="SinOut"
             EasingOut="SinIn"
-            HasBackgroundAnimation="True"/>
+            HasBackgroundAnimation="True"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
     </pages:PopupPage.Animation>
-    <!--You can use any elements here which are extended from Xamarin.Forms.View-->
+
+
+    <!--  You can use any elements here which are extended from Xamarin.Forms.View  -->
     <StackLayout
         BackgroundColor="LightGray"
-        VerticalOptions="Center" 
         HorizontalOptions="Center"
-        Margin="40">
+        VerticalOptions="Center">
+        <StackLayout.Margin>
+            <OnPlatform x:TypeArguments="Thickness">
+                <On Platform="iOS" Value="40" />
+                <On Platform="Android" Value="10" />
+            </OnPlatform>
+        </StackLayout.Margin>
 
         <Frame
+            Margin="10"
             BorderColor="Red"
-            CornerRadius="10"
-            Margin="10">
+            CornerRadius="10">
             <StackLayout>
 
-                <ListView
-                    HasUnevenRows="True"
-                    ItemsSource="{Binding Tags}">
+                <ListView HasUnevenRows="True" ItemsSource="{Binding Tags}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Label
-                                    Text="{Binding .}"
+                                    FontSize="Large"
                                     HorizontalTextAlignment="Center"
-                                    FontSize="Large"/>
+                                    Text="{Binding .}" />
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <Label Text="{Binding Seconds}" FontSize="Large" HorizontalOptions="Center" />
+                <Label
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Text="{Binding Seconds}" />
 
             </StackLayout>
         </Frame>

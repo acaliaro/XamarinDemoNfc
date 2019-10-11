@@ -8,7 +8,7 @@ namespace DemoNfc.ViewModel
     {
 
         public ObservableCollection<string> Tags { get; set; }
-        public int Seconds { get; set; }
+        public int Seconds { get; set; } = 8;
         public ResultPopupViewModel(System.Collections.Generic.List<string> arg)
         {
             Tags = new ObservableCollection<string>(arg);

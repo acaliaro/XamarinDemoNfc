@@ -14,27 +14,41 @@ namespace DemoNfc.Page
             InitializeComponent();
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<App>(this, "Timer");
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            int second = 8;
-            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-            {
-
-                ((ResultPopupViewModel)this.BindingContext).Seconds = second;
-
-                second--;
-
-                // Reached X seconds, I close the popup
-                if(second < 0)
-                {
+            MessagingCenter.Subscribe<App>(this, "Timer", (sender) => {
+                
+                if (--((ResultPopupViewModel)this.BindingContext).Seconds == 0)
                     Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
-                    return false;
-                }
-
-                return true; // True = Repeat again, False = Stop the timer
+            
             });
+
+
+            //int second = 8;
+            //Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            //{
+
+            //    ((ResultPopupViewModel)this.BindingContext).Seconds = second;
+
+            //    second--;
+
+            //    // Reached X seconds, I close the popup
+            //    if(second < 0)
+            //    {
+            //        if(Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Count > 0)
+            //            Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
+            //        return false;
+            //    }
+
+            //    return true; // True = Repeat again, False = Stop the timer
+            //});
         }
     }
 }

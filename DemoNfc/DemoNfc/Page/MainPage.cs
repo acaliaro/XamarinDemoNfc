@@ -1,10 +1,5 @@
 ﻿using Behaviors;
 using DemoNfc.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Xamarin.Forms;
 
 namespace DemoNfc.Page
@@ -29,7 +24,7 @@ namespace DemoNfc.Page
             Label labelReceivedAt = new Label() { FontSize = 20, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Center };
             labelReceivedAt.SetBinding(Label.TextProperty, "ReceivedAt");
 
-            Label labelAvviso = new Label() { FontSize = 30, Text = AppResources.AvvicinaIlTagNfc, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.End };
+            Label labelAvviso = new Label() { FontSize = 30, Text = Device.RuntimePlatform == Device.Android ? AppResources.AvvicinaIlTagNfc : AppResources.PremiIconaCentrale, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.End };
 
             StackLayout stackLayout = new StackLayout() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Children = { labelTagId, labelReceivedAt, image, labelAvviso } };
 

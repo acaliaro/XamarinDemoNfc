@@ -126,6 +126,9 @@
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="PremiIconaCentrale" xml:space="preserve">
+    <value>Premi icona centrale</value>
+  </data>
   <data name="TagIdFmt" xml:space="preserve">
     <value>TAG ID: {0}</value>
   </data>
