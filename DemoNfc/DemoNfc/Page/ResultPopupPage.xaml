@@ -28,7 +28,7 @@
         VerticalOptions="Center">
         <StackLayout.Margin>
             <OnPlatform x:TypeArguments="Thickness">
-                <On Platform="iOS" Value="40" />
+                <On Platform="iOS" Value="20" />
                 <On Platform="Android" Value="10" />
             </OnPlatform>
         </StackLayout.Margin>

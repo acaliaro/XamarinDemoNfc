@@ -247,7 +247,7 @@ namespace DemoNfc.iOS
 
             var code = payload[0];
             NSString originalText = (Foundation.NSString)NSData.FromStream(new MemoryStream(payload, 1, (int)length - 1)).ToString(NSStringEncoding.UTF8);
-            text = (Foundation.NSString)DemoNfc.Utility.Utility.UriMap(code);
+            text = (Foundation.NSString)(DemoNfc.Utility.Utility.UriMap(code) + originalText);
             //switch (code)
             //{
             //    case 0x00:
