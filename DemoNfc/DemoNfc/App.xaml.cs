@@ -15,7 +15,7 @@ namespace DemoNfc
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new ReadPage();
         }
 
         protected override void OnStart()
@@ -50,7 +50,7 @@ namespace DemoNfc
             _stopTimer = false;
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
-
+                //System.Diagnostics.Debug.WriteLine("Timer!");
                 MessagingCenter.Send<App>(this, "Timer");
                 return !_stopTimer; // true; // True = Repeat again, False = Stop the timer
             });

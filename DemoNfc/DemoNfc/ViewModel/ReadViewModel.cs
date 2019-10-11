@@ -9,15 +9,18 @@ using Xamarin.Forms;
 
 namespace DemoNfc.ViewModel
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class ReadViewModel : INotifyPropertyChanged
     {
 
         public string TagId { get; set; }
+
+        private List<string> _arg;
+
         public string ReceivedAt { get; set; }
 
         bool _isTapped;
 
-        public MainViewModel()
+        public ReadViewModel()
         {
 
             ImageTapCommand = new Command(async () => {
@@ -46,20 +49,26 @@ namespace DemoNfc.ViewModel
                 }
             });
 
+            PopupCommand = new Command(async () =>
+            {
+
+                // If there is a popup, I close it
+                if (Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Count > 0)
+                    await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
+
+                await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(new ResultPopupPage(_arg));
+
+            });
+
             OnAppearingCommand = new Command( () => {
 
                 MessagingCenter.Subscribe<App, List<string>>(this, "Tag", (sender, arg) =>
                 {
-                    OnTestAnimation?.Invoke(); //Now run the Action which, if it is not null, your ContentPage should have set to do the scrolling
                     TagId = arg[0]; // Pos 0 = TagID
+                    _arg = arg;
                     DateTime dateTime = DateTime.Now;
                     ReceivedAt = dateTime.ToLongDateString() + "\n" +  dateTime.ToLongTimeString();
-
-                    // If there is a popup, I close it
-                    if (Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Count > 0)
-                        Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
-
-                    Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(new ResultPopupPage(arg));
+                    OnReceivedData?.Invoke(); //Now run the Action which, if it is not null, your ContentPage should have set to do the scrolling
 
                 });
 
@@ -74,11 +83,11 @@ namespace DemoNfc.ViewModel
         }
 
 
-
+        public ICommand PopupCommand { get; protected set; }
         public ICommand ImageTapCommand { get; protected set; }
         public ICommand OnAppearingCommand { get; protected set; }
         public ICommand OnDisappearingCommand { get; protected set; } 
-        public Action OnTestAnimation { get; set; }
+        public Action OnReceivedData { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

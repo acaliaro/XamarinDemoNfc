@@ -30,25 +30,7 @@ namespace DemoNfc.Page
             
             });
 
-
-            //int second = 8;
-            //Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-            //{
-
-            //    ((ResultPopupViewModel)this.BindingContext).Seconds = second;
-
-            //    second--;
-
-            //    // Reached X seconds, I close the popup
-            //    if(second < 0)
-            //    {
-            //        if(Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopupStack.Count > 0)
-            //            Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
-            //        return false;
-            //    }
-
-            //    return true; // True = Repeat again, False = Stop the timer
-            //});
+        
         }
     }
 }

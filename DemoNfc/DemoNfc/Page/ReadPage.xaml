@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DemoNfc.Page.ReadPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:utility="clr-namespace:DemoNfc.Utility"
+    mc:Ignorable="d">
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:InvokeCommandAction Command="{Binding OnAppearingCommand}" />
+        </behaviors:EventHandlerBehavior>
+        <behaviors:EventHandlerBehavior EventName="Disappearing">
+            <behaviors:InvokeCommandAction Command="{Binding OnDisappearingCommand}" />
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <Frame
+            x:Name="frame"
+            BorderColor="Red"
+            CornerRadius="10">
+
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="10,20,10,10" />
+                    <On Platform="Android" Value="10" />
+                </OnPlatform>
+            </Frame.Margin>
+
+            <StackLayout>
+
+                <!--  Visualize Tag id  -->
+                <Label
+                    x:Name="labelTagId"
+                    d:Text="12:23:23:32"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    Text="{Binding TagId}"
+                    TextColor="Green"
+                    VerticalOptions="Start" />
+                <Label
+                    x:Name="labelReceivedAt"
+                    d:Text="Mercoledi 12 agosto 2019 20:20:20"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding ReceivedAt}"
+                    VerticalOptions="Start" />
+                <Image
+                    HorizontalOptions="CenterAndExpand"
+                    Source="baseline_nfc_black_48"
+                    VerticalOptions="CenterAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ImageTapCommand}" />
+                    </Image.GestureRecognizers>
+
+                </Image>
+                <Label
+                    x:Name="labelAvviso"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    VerticalOptions="End">
+                    <Label.Text>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="iOS" Value="{utility:Translate PremiIconaCentrale}" />
+                            <On Platform="Android" Value="{utility:Translate AvvicinaIlTagNfc}" />
+                        </OnPlatform>
+                    </Label.Text>
+                </Label>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>
