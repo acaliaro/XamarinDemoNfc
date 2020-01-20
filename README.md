@@ -1,2 +1,2 @@
 # XamarinDemoNfc
-Demo NFC with Xamarin Forms (only with Android...)
+Demo NFC with Xamarin Forms, for Android and iOS
